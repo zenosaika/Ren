@@ -1,0 +1,46 @@
+{
+  "options": {
+    "chart": {
+      "foreColor": "#ccc",
+      "type": "bar",
+      "stacked": true,
+      "toolbar": {
+        "show": true,
+        "tools": {
+          "download": false,
+          "selection": true,
+          "zoom": true,
+          "zoomin": true,
+          "zoomout": true,
+          "pan": true
+        }
+      }
+    },
+    "title": {
+      "text": "Number of Customer's Messages",
+      "align": "left",
+      "style": {
+        "color": "#ccc"
+      }
+    },
+    "plotOptions": {
+      "bar": {
+        "columnWidth": "30%",
+        "horizontal": false
+      }
+    },
+    "xaxis": {
+      "tooltip": {
+        "enabled": false
+      },
+      "labels": {
+        "rotate": -45,
+        "rotateAlways": true
+      },
+      "tickPlacement": "on"
+    },
+    "fill": {
+      "opacity": 1
+    }
+  }
+}
