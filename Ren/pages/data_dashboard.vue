@@ -131,14 +131,14 @@ import circle_chart from '../static/graph_options/circle_chart.json'
 export default {
   async asyncData({ $axios }) {
     const number_of_user = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/user')
+      .$get('http://localhost:4000/api/v1/get/user')
       .then((res) => {
         const customer = res.data.filter((x) => x.role === 3).length
         const supporter = res.data.filter((x) => x.role === 2).length
         return { customer, supporter }
       })
     const bar_params = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/message')
+      .$get('http://localhost:4000/api/v1/get/message')
       .then((res) => {
         const customer_messages = res.data.filter(
           (x) => x.sender_user_id === x.receiver_user_id
@@ -195,10 +195,10 @@ export default {
         return { options, series }
       })
     const number_of_video = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/video')
+      .$get('http://localhost:4000/api/v1/get/video')
       .then((res) => res.data.length)
     const package_table = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/package')
+      .$get('http://localhost:4000/api/v1/get/package')
       .then((res) => {
         const package_table = {}
         for (let i = 0; i < res.data.length; i++) {
@@ -210,7 +210,7 @@ export default {
         return package_table
       })
     const donut_params = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/user')
+      .$get('http://localhost:4000/api/v1/get/user')
       .then((res) => {
         const labels = []
         let series = {}
@@ -243,7 +243,7 @@ export default {
         return { options, series }
       })
     const line_params = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/bill')
+      .$get('http://localhost:4000/api/v1/get/bill')
       .then((res) => {
         let series = {}
         for (const key in package_table) {
@@ -300,7 +300,7 @@ export default {
       })
 
     const circle_params = await $axios
-      .$get('http://localhost:4000/api/v1/get_table/user')
+      .$get('http://localhost:4000/api/v1/get/user')
       .then((res) => {
         const labels = []
         let series = {}
