@@ -4,6 +4,7 @@
 - add Bootstrap 5 in nuxt.config.js
 - add Google Fonts in nuxt.config.js
 - edit default layout (add navbar)
+- โค้ดยังไม่ clean (เพราะรีบ) และยังโคตรอภิมหาไม่ responsive นะครับ
 
 ### Warp Points
 - [Warp to data_dashboard.vue](https://github.com/zenosaika/Ren/blob/main/Ren/pages/data_dashboard.vue)
