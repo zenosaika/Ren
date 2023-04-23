@@ -24,6 +24,10 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed&display=swap',
       },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@300&display=swap',
+      },
     ],
     script: [
       {
