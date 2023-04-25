@@ -20,7 +20,8 @@
     "vue": "^2.7.10",
     "vue-apexcharts": "^1.6.2",
     "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10"
+    "vue-template-compiler": "^2.7.10",
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
@@ -30,6 +31,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.5.1",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "vue-particles": "^1.0.9"
   }
 }

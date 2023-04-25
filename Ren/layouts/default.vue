@@ -12,7 +12,7 @@
               <a class="nav-link" href="#">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Support Chat</a>
+              <a class="nav-link" href="/support_chat">Support Chat</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/data_dashboard">Data Dashboard</a>
