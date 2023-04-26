@@ -33,9 +33,10 @@
                     </div>
                 </div>
                 <div style="display:flex; width:100%">
-                    <input type="text" class="form-control jelly-input" placeholder="" aria-label="message" aria-describedby="basic-addon2">
-                    <button class="btn btn-outline-secondary jelly-button" type="button" style="margin-left:15px">Send &#128172;</button>
+                    <input v-model="input" type="text" class="form-control jelly-input">
+                    <button class="btn btn-outline-secondary jelly-button" type="button" style="margin-left:15px" @click="send_message()">Send &#128172;</button>
                 </div>
+                
             </div>
         </div>
       </div>
@@ -45,10 +46,38 @@
 </template>
 
 <script>
+// import WebSocket from 'ws'
+// const ws = new WebSocket("ws://localhost:4001");
+
+// ws.onopen = function (event) {
+//     const obj = { "type": "join", "params": { "customer_id": 666 } }
+//     ws.send(JSON.stringify(obj));
+// }
+
+// ws.onmessage = (event) => {
+//     console.log(event.data);
+// }
 export default {
+    async asyncData({ $axios }) {
+        const receiver_user_id = 666
+        const messages = await $axios
+        .$get(`http://localhost:4000/api/v1/get_messages/${receiver_user_id}`)
+        .then((res) => {
+            let data = []
+            if (res.status === 'Success') {
+                data = res.data
+            }
+            for (let i=0; i<data.length; i++){
+                data[i] = {name:'Hitori Bocchi', image:'images/bocchi.jpeg', body:[data[i].body]}
+            }
+            return data
+      })
+      return {
+        messages
+      }
+    },
     data() {
-        return {
-            users: [
+        const users = [
                 {id:1, name:'Hitori Bocchi', package:'Slime Plan', image:'images/bocchi.jpeg'},
                 {id:2, name:'Hitori Bocchi', package:'Slime Plan', image:'images/bocchi.jpeg'},
                 {id:3, name:'Hitori Bocchi', package:'Slime Plan', image:'images/bocchi.jpeg'},
@@ -62,8 +91,8 @@ export default {
                 {id:11, name:'Hitori Bocchi', package:'Slime Plan', image:'images/bocchi.jpeg'},
                 {id:12, name:'Hitori Bocchi', package:'Slime Plan', image:'images/bocchi.jpeg'},
                 {id:13, name:'Hitori Bocchi', package:'Slime Plan', image:'images/bocchi.jpeg'},
-            ],
-            messages: [
+            ]
+        const messages = [
                 {name:'Hitori Bocchi', image:'images/bocchi.jpeg', body:['Pure Pure Miracle!', 'El Psy Congroo!']},
                 {name:'Hitori Bocchi', image:'images/bocchi.jpeg', body:['Pure Pure Miracle!', 'หวัดดี']},
                 {name:'Hitori Bocchi', image:'images/bocchi.jpeg', body:['Pure Pure Miracle!']},
@@ -83,8 +112,35 @@ export default {
                 {name:'Hitori Bocchi', image:'images/bocchi.jpeg', body:['Pure Pure Miracle!']},
                 {name:'Hitori Bocchi', image:'images/bocchi.jpeg', body:['Pure Pure Miracle!']},
             ]
+        return {
+            input:'',
+            users,
+            messages
         }
-    }
+    },
+    methods: {
+        async send_message() {
+            const today = new Date()
+            const timestamp = `${today.getTime()}`
+            const obj = {
+                timestamp,
+                body: this.input,
+                sender_user_id: 42,
+                receiver_user_id: 666,
+            }
+            const response = await this.$axios
+            .$post('http://localhost:4000/api/v1/insert/message', obj)
+            .then((res) => {
+                // const obj = { "type": "message", "params": { "customer_id": 666, "message": this.input } }
+                // ws.send(JSON.stringify(obj));
+                if (res.status === 'Success') {
+                    this.input = ''
+                }
+                return res
+            })
+            console.log(response)
+        }
+    },
 }
 </script>
 
